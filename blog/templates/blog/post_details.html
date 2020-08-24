@@ -1,0 +1,69 @@
+{% extends 'videos/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <br>
+    <h1>Blog Posts 
+    
+        {% if user.is_authenticated %}
+        <span><a href="{% url 'post-form' %}" role="button" class="btn btn-primary">Discuss on Your Topic</a>
+        </span>
+        {% endif %}
+    </h1>
+    <hr>
+<br>
+
+          <h4><a href="{% url 'post-details' post.id %}" >{{post.title}} </a>
+          </h4>
+     
+     
+          <p>
+            {{post.content}}</p>
+     
+    
+        <p class="font-italic">
+        Published by <a href="#">{{post.author}}</a> On
+       {{post.date_posted}}
+  
+     </p>
+
+<div class="col-md-8 card mb-4  mt-3 ">
+      <div class="card-body">
+        <!-- comments -->
+        <!-- comments.count comments is the dic key -->
+        {% with comments.count as total_comments %}
+        <h2>{{ total_comments }} comments</h2>
+
+        <p>
+          {% endwith %} 
+
+          {% for comment in comments %}
+        </p>
+        <div class="media">
+
+  <div class="media-body">
+    <h5 class="mt-0"> {{ comment.name }}  (<span>  {{ comment.created_on }} </span> ) </h5>
+        {{ comment.body | linebreaks }}
+    
+  </div>
+</div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-8 card mb-4  mt-3 ">
+      <div class="card-body">
+
+        <h3>Leave a comment</h3>
+        <form method="post" style="margin-top: 1.3em;">
+          {{ comment_form | crispy }}
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+
+      </div>
+    </div>
+
+</div>
+{% endblock content %}

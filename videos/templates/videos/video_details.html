@@ -1,0 +1,18 @@
+{% extends 'videos/base.html' %}
+
+{% block content %}
+
+
+<h1>{{single_videos.title}}</h1>
+<br>
+<video width='400' controls>
+<source src='{{single_videos.video.url}}' type='video/mp4'>
+Your browser does not support the video tag.
+</video>
+<br><br>
+<h3>Publisher:{{single_videos.user.username}}</h3>
+<h3>Description:</h3>
+
+
+{% endblock content %}
+

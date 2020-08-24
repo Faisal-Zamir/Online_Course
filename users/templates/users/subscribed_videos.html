@@ -1,0 +1,26 @@
+{% extends 'users/dashboard.html' %}
+
+{% block dashbaord_content%}
+    
+
+<h1>Your All Subscribed Videos</h1>
+
+{% for video in all_videos %}
+
+<h4> <a href="{% url 'video_details' video.id %}" target="_blank">{{video.title}}</a> </h4>
+
+
+<video width='400' controls>
+<source src='{{video.video.url}}' type='video/mp4'>
+Your browser does not support the video tag.
+</video>
+<br> 
+<h5>Uploaded By:<a href="#" target="_blank">{{ video.user}}</a>
+    
+</h5>
+<br>
+{% endfor %}
+{% endblock dashbaord_content%}
+    
+	
+	

@@ -1,0 +1,33 @@
+{% extends 'videos/base.html' %}
+
+
+{% block content %}
+<br>
+{% if not_find_user %}
+{{not_find_user}}
+{% else %}
+
+{% for profile in user_profiles %}
+
+<img src="{{profile.image.url}}" alt="" width="200px" height="200px">
+<p>{{profile.user.username}} <span>
+    {% if profile.followed %}
+    <a role="button" href="{% url 'unsubscribe' profile.id %}"  class="btn btn-danger">Unsubscribe</a>
+    {% else %}
+   
+    <a role="button" href="{% url 'subscribe' profile.id %}"  class="btn btn-info">Subscribe</a>
+   
+    {% endif %}
+
+
+</span></p>
+
+{% endfor %}
+
+
+
+{% endif %}
+
+
+{% endblock content %}
+

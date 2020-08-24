@@ -1,0 +1,37 @@
+{% extends 'users/dashboard.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block dashbaord_content%}
+    
+  
+
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {{title}}
+        {{form | crispy}}
+        <input class="btn btn-dark my-3" type="submit" />
+        </form>
+       <h1>Your Uploaded Video</h1>
+   
+        {% for video in user_videos %}
+        <a href="{% url 'video_details' video.id %}" target="_blank">{{video.title}}</a>
+
+        <br><br>
+        <video width='400' controls>
+        <source src='{{video.video.url}}' type='video/mp4'>
+        Your browser does not support the video tag.
+        </video>
+        <br>
+        <h4>Uploaded By: {{request.user}}</h4>
+        <br>
+        {% endfor %}
+        {% endblock dashbaord_content%}
+     
+        
+        </body>
+        <script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'})
+        // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script>
+        <script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script>
+        </html>
+   

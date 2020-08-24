@@ -1,0 +1,31 @@
+
+{% extends 'users/dashboard.html' %}
+
+{% block dashbaord_content%}
+ 
+ <br> <br>
+    <table class="table">
+        <thead>
+          <tr>
+ 
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Profile Picture</th>
+            <th scope="col">Total Videos Uploads</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+            <td>{{user.profile.user.username}}</td>
+            <td>{{user.profile.user.email}}</td>
+            <td> <img src="{{user_profile.image.url}}  " alt="not exist"></td>
+            <td>{{user_video_count}}</td>
+
+          </tr>
+         
+        </tbody>
+      </table>
+      <hr>
+{% endblock dashbaord_content%}

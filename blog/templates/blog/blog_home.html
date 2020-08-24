@@ -1,0 +1,33 @@
+{% extends 'videos/base.html' %}
+
+{% block content %}
+ <div class="container">
+    <br>
+    <h1>Blog Posts 
+    
+        {% if user.is_authenticated %}
+        <span><a href="{% url 'post-form' %}" role="button" class="btn btn-primary">Discuss on Your Topic</a>
+        </span>
+        {% endif %}
+    </h1>
+    <hr>
+<br>
+    {% for post in posts %}
+    
+        <h4> <a href="{% url 'post-details' post.id %}" target="_blank">{{post.title}} </a></h2>
+        
+            <p>{{post.content|truncatewords:20 }} <span><a href="{% url 'post-details' post.id %}" role="button" target="_blank" class="btn btn-info">Read More</a></span></p>
+       
+    
+          <p class="font-italic">
+             Published by <a href="#">{{post.author}}</a> On
+            {{post.date_posted}}
+       
+          </p>
+     
+<hr>
+    {% endfor %}
+
+</div>
+
+{% endblock content %}
